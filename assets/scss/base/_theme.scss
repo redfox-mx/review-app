@@ -1,0 +1,10 @@
+@use 'core/colors' as color;
+@use 'core/typography' as font;
+
+:root {
+  --primary-color: #{color.$primary};
+  --accent-color: #{color.$accent};
+  --foreground-color: #{color.$text};
+  --contrast-color: #{color.$text-contrast};
+  --font-family: #{font.$primary};
+}
