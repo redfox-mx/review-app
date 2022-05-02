@@ -1,0 +1,5 @@
+@mixin debug($color: red, $width: 1px) {
+  outline-width: $width;
+  outline-color: $color;
+  outline-style: solid;
+}
