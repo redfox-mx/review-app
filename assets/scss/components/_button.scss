@@ -1,0 +1,23 @@
+@use 'sass:map';
+@use 'core/typography' as font;
+
+@mixin as-button {
+  font-weight: map.get(font.$weight, 'semibold');
+  outline: none;
+  border: none;
+  border-radius: 6px;
+}
+
+@mixin as-accent {
+  background-color: var(--primary-color);
+  color: var(--contrast-color);
+  padding: 12px 24px;
+  text-align: center;
+}
+.button {
+  @include as-button;
+}
+
+.button-accent {
+  @include as-accent;
+}

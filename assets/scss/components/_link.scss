@@ -1,0 +1,29 @@
+@use 'sass:map';
+@use 'core/typography' as font;
+
+@import 'core/query';
+
+.link {
+  text-decoration: none;
+}
+
+a.link:visited {
+  color: var(--primary-color);
+}
+
+.link-navbar {
+  display: inline-block;
+  padding: 20px 0px 20px 31px;
+  color: var(--primary-color);
+  background-color: #f8f8f8;
+  font-weight: map.get(font.$weight, 'bold');
+  border-bottom: solid 1px #f59021;
+  font-size: 18px;
+  white-space: nowrap;
+  @include from(1024px) {
+    font-weight: map.get(font.$weight, 'semibold');
+    padding: 0px;
+    border: none;
+    color: #363636;
+  }
+}
