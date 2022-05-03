@@ -1,8 +1,5 @@
 <template>
   <div class="navbar">
-    <div class="nabvar__action">
-      <slot name="actions" />
-    </div>
     <nav class="navbar__links" :class="{ 'navbar__links--close': openMenu }">
       <LinkNavigation />
     </nav>

@@ -44,7 +44,7 @@ export default Vue.extend({
   margin-bottom: 10px;
   color: var(--primary-color);
   font-weight: map.get(font.$weight, 'bolder');
-  font-size: 30px;
+  font-size: 34px;
   position: relative;
 }
 
