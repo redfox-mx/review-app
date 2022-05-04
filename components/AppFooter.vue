@@ -115,14 +115,13 @@
 @import 'core/query';
 
 @include from(768px) {
-  .footer {
-    display: table;
-  }
   .footer__section:not(.logo) {
-    width: calc(100% / 3 - 108px);
+    width: max-content;
+    margin-left: 50px;
     text-align: left;
-    display: table-cell;
-    vertical-align: middle;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 0;
   }
 }
 img {

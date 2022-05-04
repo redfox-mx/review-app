@@ -15,7 +15,7 @@
       <h2 class="text-xl text-teal">300</h2>
       <p class="text-normal">Millones<br />colocados</p>
     </div>
-    <div class="stats__card">
+    <div class="stats__card last">
       <div>
         <img src="~/assets/images/bank-orange.svg" class="image" />
       </div>
@@ -42,6 +42,12 @@
   padding: 44px 0px;
   font-size: 0;
   margin-bottom: 64px;
+  @include until(600px) {
+    .last {
+      display: block;
+      margin: 0 auto;
+    }
+  }
 }
 
 .image {
