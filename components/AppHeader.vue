@@ -13,7 +13,7 @@
       </nav>
       <div class="dialog-anchor">
         <button class="button" @click="toggleDialog()">Ingresar</button>
-        <div class="dialog-visibility">
+        <div class="dialog-visibility" v-show="openDialog">
           <ButtonDialog />
         </div>
       </div>
