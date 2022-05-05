@@ -20,33 +20,58 @@
         </div>
       </div>
       <div class="menu">
-        <IconBurgerMenu />
+        <button v-if="openSidenav" @click="toggleSidenav()">
+          <IconBurgerMenu />
+        </button>
+        <button @click="toggleSidenav()" v-else>Cerrar <IconTimes /></button>
       </div>
     </header>
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { mapMutations, mapState } from 'vuex'
 
 export default Vue.extend({
   data: () => ({
     openDialog: false,
   }),
+  computed: mapState({
+    openSidenav: (state: any) => !state.layout.openSidenav,
+  }),
   methods: {
     toggleDialog() {
       this.openDialog = !this.openDialog
     },
+    ...mapMutations({
+      toggleSidenav: 'layout/TOGGLE_SIDENAV',
+    }),
   },
 })
 </script>
 <style lang="scss" scoped>
 @import 'core/query';
 
+button {
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f59021;
+  background-color: transparent;
+}
+img {
+  display: inline-block;
+}
+
 a {
   text-decoration: none;
 }
 
 a:visited {
+  color: black;
+}
+
+a:link {
   color: black;
 }
 

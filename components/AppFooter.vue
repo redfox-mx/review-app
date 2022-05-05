@@ -114,7 +114,7 @@
 <style lang="scss" scoped>
 @import 'core/query';
 
-@include from(768px) {
+@include from(790px) {
   .footer__section:not(.logo) {
     width: max-content;
     margin-left: 50px;
