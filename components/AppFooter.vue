@@ -133,6 +133,7 @@ img {
 .logo {
   height: 52px;
   width: 108px;
+  display: inline-block;
 }
 
 .footer {
