@@ -41,7 +41,7 @@
 .stats {
   padding: 44px 0px;
   font-size: 0;
-  margin-bottom: 64px;
+  padding-bottom: 64px;
   @include until(600px) {
     .last {
       display: block;

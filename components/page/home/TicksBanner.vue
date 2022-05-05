@@ -62,7 +62,8 @@ img {
   margin-top: 41px;
   @include from(890px) {
     width: 580px;
-    float: right;
+    position: absolute;
+    right: 0;
   }
 }
 

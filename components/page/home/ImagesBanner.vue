@@ -28,8 +28,7 @@
 }
 
 .banner__title {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  padding: 40px 0px;
 }
 img {
   display: block;

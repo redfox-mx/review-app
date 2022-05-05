@@ -3,7 +3,7 @@
     <div class="center banner__title">
       <HeadingTitle decoration="center">Contactanos</HeadingTitle>
     </div>
-    <form class="form">
+    <form class="form constrains">
       <el-input v-model="inputName" placeholder="Nombre">
         <template #prefix>
           <span class="input__icon">

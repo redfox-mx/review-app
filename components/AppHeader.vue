@@ -1,27 +1,29 @@
 <template>
-  <header class="header constrains">
-    <IconLogo class="logo" />
+  <div class="shadow">
+    <header class="header constrains">
+      <IconLogo class="logo" />
 
-    <div class="navigation-container">
-      <nav class="navigation">
-        <ul class="list">
-          <li>Quienes somos</li>
-          <li>¿Colo lo hacemos?</li>
-          <li>Requisitos</li>
-          <li>Contáctanos</li>
-        </ul>
-      </nav>
-      <div class="dialog-anchor">
-        <button class="button" @click="toggleDialog()">Ingresar</button>
-        <div class="dialog-visibility" v-show="openDialog">
-          <ButtonDialog />
+      <div class="navigation-container">
+        <nav class="navigation">
+          <ul class="list">
+            <li><NuxtLink to="/">Quienes somos</NuxtLink></li>
+            <li><NuxtLink to="/">¿Colo lo hacemos?</NuxtLink></li>
+            <li><NuxtLink to="/">Requisitos</NuxtLink></li>
+            <li><NuxtLink to="/">Contáctanos</NuxtLink></li>
+          </ul>
+        </nav>
+        <div class="dialog-anchor">
+          <button class="button" @click="toggleDialog()">Ingresar</button>
+          <div class="dialog-visibility" v-show="openDialog">
+            <ButtonDialog />
+          </div>
         </div>
       </div>
-    </div>
-    <div class="menu">
-      <IconBurgerMenu />
-    </div>
-  </header>
+      <div class="menu">
+        <IconBurgerMenu />
+      </div>
+    </header>
+  </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
@@ -39,6 +41,14 @@ export default Vue.extend({
 </script>
 <style lang="scss" scoped>
 @import 'core/query';
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: black;
+}
 
 @include until(1023px) {
   header .navigation-container {
@@ -63,10 +73,16 @@ export default Vue.extend({
   transform: translateY(100%);
 }
 
-.header {
-  background-color: white;
-  height: 64px;
+.shadow {
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 9999;
+}
+.header {
+  height: 64px;
+
   font-size: 0;
   padding-top: 15px;
   position: relative;
@@ -102,7 +118,7 @@ export default Vue.extend({
   list-style: none;
   vertical-align: middle;
   > * ~ * {
-    margin-left: 35px;
+    padding-left: 35px;
   }
 }
 
