@@ -3,49 +3,104 @@
     <div class="center banner__title">
       <HeadingTitle decoration="center">Contactanos</HeadingTitle>
     </div>
-    <form class="form constrains">
-      <el-input v-model="inputName" placeholder="Nombre">
-        <template #prefix>
-          <span class="input__icon">
-            <IconPersonMini />
-          </span>
-        </template>
-      </el-input>
-      <el-input v-model="inputEmail" placeholder="Correo electrónico">
-        <template #prefix>
-          <span class="input__icon">
-            <IconPencilMini />
-          </span>
-        </template>
-      </el-input>
-      <div class="textarea-achor">
-        <el-input
-          v-model="inputDescription"
-          placeholder="Descripción"
-          type="textarea"
-          rows="4"
-        >
-        </el-input>
-        <span class="textarea__icon input__icon">
-          <IconPencilMini />
-        </span>
+    <div class="constrains">
+      <div class="container">
+        <el-form ref="form" class="form" :model="form" :rules="rules">
+          <el-form-item prop="name">
+            <el-input
+              v-model="form.name"
+              placeholder="Nombre"
+              class="input-with-shadow"
+            >
+              <template #prefix>
+                <InputIcon>
+                  <IconPersonMini />
+                </InputIcon>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item prop="email">
+            <el-input
+              v-model="form.email"
+              placeholder="Correo electronico"
+              class="input-with-shadow"
+            >
+              <template #prefix>
+                <InputIcon>
+                  <IconEmailMini />
+                </InputIcon>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item prop="description">
+            <div>
+              <el-input
+                v-model="form.description"
+                type="textarea"
+                placeholder="Descripcion"
+                class="textarea-with-shadow"
+                rows="5"
+                maxlength="200"
+                show-word-limit
+              >
+              </el-input>
+            </div>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="info" class="expand">CAPTCHA</el-button>
+          </el-form-item>
+          <el-button type="primary" @click.prevent="validate">Enviar</el-button>
+        </el-form>
       </div>
-      <el-button type="info" class="expanded">CAPTCHA</el-button>
-      <div class="center">
-        <el-button type="primary">Enviar</el-button>
-      </div>
-    </form>
+    </div>
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { Form } from 'element-ui'
+import { Validators } from '@/util/form/rules'
 
 export default Vue.extend({
   data: () => ({
-    inputName: '',
-    inputEmail: '',
-    inputDescription: '',
+    form: {
+      name: '',
+      email: '',
+      description: '',
+    },
+    rules: {
+      name: [
+        Validators.required('Es necesario un nombre', {
+          trigger: 'blur',
+        }),
+        Validators.regex("Solo debe tener letras de la 'a' a la 'z'", {
+          pattern: /^[a-zA-Z\s]+$/,
+          trigger: ['change', 'blur'],
+        }),
+      ],
+      email: [
+        Validators.required('Campo requerido', { trigger: 'blur' }),
+        Validators.email('Correo invalido', { trigger: 'blur' }),
+      ],
+      description: [
+        Validators.required('Campo requerido', { trigger: 'blur' }),
+        Validators.min('Numero necesita al menos 20 caracteres', {
+          min: 20,
+          trigger: 'blur',
+        }),
+      ],
+    },
   }),
+  methods: {
+    validate() {
+      const form = this.$refs.form as Form
+
+      form.validate((isValid) => {
+        if (isValid) {
+          console.log('Formulario Valido!')
+        }
+      })
+    },
+  },
 })
 </script>
 <style lang="scss" scoped>
@@ -53,34 +108,23 @@ export default Vue.extend({
 
 $device: 768px;
 
-.expanded {
-  display: block;
+.expand {
   width: 100%;
 }
 
-.textarea-achor {
-  position: relative;
-}
-
-.textarea__icon {
-  position: absolute;
-  top: -4px;
-  left: 5px;
-}
-
-.center {
-  display: block;
-  width: fit-content;
+.container {
+  max-width: 447px;
   margin: 0 auto;
 }
 
 .form {
-  margin: auto;
-  max-width: 350px;
+  text-align: center;
 }
 
-form.form > * {
-  margin-bottom: 15px;
+.center {
+  display: block;
+  width: max-content;
+  margin: 0 auto;
 }
 
 .banner__title {
@@ -91,13 +135,6 @@ form.form > * {
 svg {
   width: 14px;
   height: 14px;
-}
-
-.input__icon {
-  display: inline-block;
-  margin-top: 12px;
-  padding-right: 5px;
-  border-right: 1px solid darken(#c0c4cc, 30%);
 }
 
 .banner {

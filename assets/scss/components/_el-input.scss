@@ -1,19 +1,39 @@
+@use 'sass:math';
+
 $--input-border-radius: 6px;
 $--input-border: 1px solid transparent;
-$--input-background-color: #f5f5f5;
-$--input-focus-border: darken(#c0c4cc, 20%);
 
-.el-input {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 6px;
-}
+$--group-option-flex: 0 0 math.div(1, 5) * 100%;
 
-.el-textarea {
+@import '~element-ui/packages/theme-chalk/src/input';
+
+.el-input.input-with-shadow {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 6px;
-  .el-textarea__inner {
-    padding-left: 30px;
+  border-radius: $--input-border-radius;
+  .el-input__inner {
+    background-color: #f5f5f5;
+    &:focus {
+      border-color: darken(#c0c4cc, 20%);
+    }
+  }
+
+  .el-input__count {
+    background-color: #f5f5f5;
   }
 }
 
-@import '~element-ui/packages/theme-chalk/src/input';
+.el-textarea.textarea-with-shadow {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  .el-textarea__inner {
+    background-color: #f5f5f5;
+    padding-left: 30px;
+    &:focus {
+      border-color: darken(#c0c4cc, 20%);
+    }
+  }
+
+  .el-input__count {
+    background-color: #f5f5f5;
+  }
+}

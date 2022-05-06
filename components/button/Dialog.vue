@@ -1,19 +1,68 @@
 <template>
-  <form class="dialog">
-    <div class="control">
-      <img src="~/assets/images/user 1.png" />
-      <input placeholder="Correo electronico" />
-    </div>
-    <hr />
-    <div class="control">
-      <img src="~/assets/images/Group 2319.png" />
-      <input placeholder="Contraseña" />
-    </div>
-    <hr />
+  <el-form ref="form" class="dialog" :model="form" :rules="rules">
+    <el-form-item prop="name">
+      <el-input v-model="form.name" placeholder="Usuario">
+        <template #prefix>
+          <img src="~/assets/images/user 1.png" />
+        </template>
+      </el-input>
+    </el-form-item>
+    <el-form-item prop="password">
+      <el-input
+        v-model="form.password"
+        placeholder="Contraseña"
+        type="password"
+      >
+        <template #prefix>
+          <img src="~/assets/images/Group 2319.png" />
+        </template>
+      </el-input>
+    </el-form-item>
     <a>Olvidé contraseña</a>
-    <button>Acceder</button>
-  </form>
+    <button @click.prevent="submit">Acceder</button>
+  </el-form>
 </template>
+<script lang="ts">
+import Vue from 'vue'
+import { Form } from 'element-ui'
+import { Validators } from '@/util/form/rules'
+
+export default Vue.extend({
+  data: () => ({
+    form: {
+      name: '',
+      password: '',
+    },
+    rules: {
+      name: [
+        Validators.required('Campo requerido', { trigger: 'blur' }),
+        Validators.regex('Usuario invalido', {
+          pattern: /^[a-zA-Z]+$/,
+          trigger: 'blur',
+        }),
+      ],
+      password: [
+        Validators.required('Campo requerido', { trigger: 'blur' }),
+        Validators.min('Debe de tener al menos 8 caracteres', {
+          min: 8,
+          trigger: 'blur',
+        }),
+      ],
+    },
+  }),
+  methods: {
+    submit() {
+      const form = this.$refs.form as Form
+
+      form.validate((isValid) => {
+        if (isValid) {
+          console.log('Formulario valido')
+        }
+      })
+    },
+  },
+})
+</script>
 <style scoped>
 a,
 button {
@@ -31,9 +80,7 @@ button {
   background-color: transparent;
   color: #f59121;
 }
-.control {
-  margin: 20px 10px;
-}
+
 .dialog {
   background-color: white;
   border-radius: 8px;
@@ -61,5 +108,6 @@ input {
 input,
 img {
   display: inline-block;
+  vertical-align: middle;
 }
 </style>
